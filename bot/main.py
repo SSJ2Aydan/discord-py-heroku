@@ -6,7 +6,7 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 
 @client.command()
 async def play(ctx, url_: str):
-  activity = discord.Game(name="!help")
+  activity = discord.Game(name="coconut mall")
   voiceChannel = discord.utils.get(ctx.guild.voice_channels, name='coconut mall theme')
   await voiceChannel.connect()
   voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
