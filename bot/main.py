@@ -2,6 +2,7 @@ import discord, nacl, ffmpeg, os, random
 from discord.ext import commands
 
 client = commands.Bot(command_prefix="coco.")
+TOKEN = os.getenv("DISCORD_TOKEN")
 
 @client.command()
 async def play(ctx, url_: str):
@@ -21,4 +22,4 @@ async def leave(ctx):
   if voice.is_connected():
     await voice.disconnect()
 
-client.run('OTQ2OTU5NjM4MTA3MTM2MDUw.YhmS4w.oigdnKGvt4ArSbGzTNGqz5Rq4M0')
+client.run(TOKEN)
