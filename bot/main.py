@@ -1,16 +1,24 @@
-import os
+import discord, nacl, ffmpeg, os, random
 from discord.ext import commands
 
-bot = commands.Bot(command_prefix="!")
-TOKEN = os.getenv("DISCORD_TOKEN")
+client = commands.Bot(command_prefix="coco.")
 
-@bot.event
-async def on_ready():
-    print(f"Logged in as {bot.user.name}({bot.user.id})")
+@client.command()
+async def play(ctx, url_: str):
+  voiceChannel = discord.utils.get(ctx.guild.voice_channels, name='coconut mall theme')
+  await voiceChannel.connect()
+  voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
 
-@bot.command()
-async def ping(ctx):
-    await ctx.send("pong")
+  def repeat():
+    voice.play(discord.FFmpegPCMAudio("song.mp3"), after=lambda e: repeat())
 
-if __name__ == "__main__":
-    bot.run(TOKEN)
+  voice.play(discord.FFmpegPCMAudio("song.mp3"), after=lambda e: repeat())
+
+
+@client.command()
+async def leave(ctx):
+  voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+  if voice.is_connected():
+    await voice.disconnect()
+
+client.run('OTQ2OTU5NjM4MTA3MTM2MDUw.YhmS4w.oigdnKGvt4ArSbGzTNGqz5Rq4M0')
