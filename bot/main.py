@@ -2,7 +2,7 @@ import discord, nacl, ffmpeg, os, random
 from discord.ext import commands
 
 client = commands.Bot(command_prefix="coco.")
-TOKEN = os.getenv("DISCORD_TOKEN")
+TOKEN = os.getenv(DISCORD_TOKEN)
 
 @client.command()
 async def play(ctx, url_: str):
